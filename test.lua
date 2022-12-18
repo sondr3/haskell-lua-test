@@ -10,3 +10,4 @@ print(system.getwd())
 print(path.directory(path.directory(system.getwd())))
 
 print(heime.factorial(10))
+print(heime.utils.test)
