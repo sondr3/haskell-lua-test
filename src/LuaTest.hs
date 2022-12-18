@@ -8,7 +8,13 @@ documentedModule =
   Module
     { moduleName = "heime",
       moduleDescription = "Utilities for heime and stuff",
-      moduleFields = [],
+      moduleFields =
+        [ Field
+            { fieldName = "utils",
+              fieldDescription = "Utilities",
+              fieldPushValue = pushModule nestedModule
+            }
+        ],
       moduleFunctions = [luaFactorial],
       moduleOperations = []
     }
@@ -25,3 +31,19 @@ luaFactorial =
     factorialParam :: Parameter HsLua.Exception Prelude.Integer
     factorialParam = parameter peekIntegral "integer" "n" "number for factorial"
     factorialResult = functionResult pushIntegral "integer" "factorial"
+
+nestedModule :: Module HsLua.Exception
+nestedModule =
+  Module
+    { moduleName = "nested",
+      moduleDescription = "Some nested utilities",
+      moduleFields =
+        [ Field
+            { fieldName = "test",
+              fieldDescription = "A test field",
+              fieldPushValue = pushString "this is a test"
+            }
+        ],
+      moduleFunctions = [],
+      moduleOperations = []
+    }
