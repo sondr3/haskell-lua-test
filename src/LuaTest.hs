@@ -1,5 +1,6 @@
 module LuaTest (documentedModule) where
 
+import Data.Version (makeVersion)
 import HsLua
 
 documentedModule :: Module HsLua.Exception
@@ -18,6 +19,8 @@ luaFactorial =
     ### liftPure (\n -> product [1 .. n])
     <#> factorialParam
     =#> factorialResult
+    #? "Calculates the factorial of a number"
+    `since` makeVersion [0, 1, 0]
   where
     factorialParam :: Parameter HsLua.Exception Prelude.Integer
     factorialParam = parameter peekIntegral "integer" "n" "number for factorial"

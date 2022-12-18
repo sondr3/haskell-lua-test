@@ -18,6 +18,7 @@ common config
     , hslua-objectorientation ^>=2.2
     , hslua-packaging ^>=2.2
     , hslua-module-path ^>=1
+    , text ^>=2
 
   default-language: GHC2021  
   default-extensions: DerivingStrategies DuplicateRecordFields LambdaCase MultiWayIf OverloadedStrings
@@ -41,11 +42,15 @@ library
   import: config
   hs-source-dirs: src
   exposed-modules: LuaTest
-  default-language: Haskell2010
 
 executable hslua
   import: config
   hs-source-dirs: app
   main-is: Main.hs
   build-depends: haskell-lua-testing
-  default-language: Haskell2010
+
+executable render-hslua
+  import: config
+  hs-source-dirs: tools
+  main-is: RenderDocs.hs
+  build-depends: haskell-lua-testing
